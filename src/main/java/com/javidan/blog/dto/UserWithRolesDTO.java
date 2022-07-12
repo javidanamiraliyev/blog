@@ -1,6 +1,6 @@
 package com.javidan.blog.dto;
 
-import com.javidan.blog.domain.Role;
+import com.javidan.blog.entity.Role;
 
 import java.util.Set;
 

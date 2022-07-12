@@ -1,20 +1,16 @@
 package com.javidan.blog.service;
 
-import com.javidan.blog.domain.Role;
-import com.javidan.blog.dto.RoleDTO;
-import com.javidan.blog.exceptions.EmailAlreadyUsedException;
-import com.javidan.blog.domain.User;
 import com.javidan.blog.dto.UserDTO;
+import com.javidan.blog.entity.Role;
+import com.javidan.blog.entity.User;
 import com.javidan.blog.repository.RoleRepository;
 import com.javidan.blog.repository.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import javax.security.enterprise.identitystore.PasswordHash;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -43,7 +39,7 @@ public class UserService {
 
     }
 
-    public User createUser(User userDTO) throws NoSuchAlgorithmException {
+    public User createUser(UserDTO userDTO) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] passwordHash = digest.digest(userDTO.getPassword().getBytes(StandardCharsets.UTF_8));
         User user = new User();

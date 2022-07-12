@@ -7,14 +7,12 @@ import java.util.List;
 public class ErrorResponse {
     private final int status;
     private final String message;
-    private final StackTraceElement[] stackTrace;
     private final LocalDateTime timestamp;
 
-    public ErrorResponse(String message, int status, StackTraceElement[] stackTrace){
+    public ErrorResponse(int status, String message){
         super();
         this.message = message;
         this.status = status;
-        this.stackTrace = stackTrace;
         this.timestamp = LocalDateTime.now();
     }
 
@@ -28,9 +26,5 @@ public class ErrorResponse {
 
     public LocalDateTime getTimestamp() {
         return timestamp;
-    }
-
-    public StackTraceElement[] getStackTrace() {
-        return stackTrace;
     }
 }

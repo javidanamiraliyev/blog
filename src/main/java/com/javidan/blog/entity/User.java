@@ -1,4 +1,4 @@
-package com.javidan.blog.domain;
+package com.javidan.blog.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -38,6 +38,9 @@ public class User extends BaseEntity{
         inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles = new HashSet<>();
 
+    @Column
+    private boolean active;
+
     public User() {
     }
 
@@ -47,10 +50,6 @@ public class User extends BaseEntity{
         this.lastName = lastName;
         this.email = email;
         this.thumbnailUrl = thumbnailUrl;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setPassword(String password) {
@@ -95,5 +94,13 @@ public class User extends BaseEntity{
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean isActive) {
+        this.active = isActive;
     }
 }

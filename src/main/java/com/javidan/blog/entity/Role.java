@@ -1,4 +1,4 @@
-package com.javidan.blog.domain;
+package com.javidan.blog.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

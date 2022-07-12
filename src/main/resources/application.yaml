@@ -9,5 +9,5 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 logging:
   level:
-    root: debug
+    com.javidan.blog: debug
     org.hibernate : debug

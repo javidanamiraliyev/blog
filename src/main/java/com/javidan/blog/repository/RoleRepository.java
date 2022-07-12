@@ -1,6 +1,6 @@
 package com.javidan.blog.repository;
 
-import com.javidan.blog.domain.Role;
+import com.javidan.blog.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

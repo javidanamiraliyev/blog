@@ -23,26 +23,32 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     private final HttpStatus INTERNAL_SERVER_ERROR = HttpStatus.INTERNAL_SERVER_ERROR; //500
 
     @ExceptionHandler({RuntimeException.class})
-    public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException ex){
-        ErrorResponse errorResponse = new ErrorResponse("Unknown error",INTERNAL_SERVER_ERROR.value(),ex.getStackTrace());
-        return new ResponseEntity<>(errorResponse,INTERNAL_SERVER_ERROR);
+    public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(INTERNAL_SERVER_ERROR.value(), "Unknown error");
+        return new ResponseEntity<>(errorResponse, INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler({EmailAlreadyUsedException.class})
-    public ResponseEntity<ErrorResponse> handleEmailAlreadyUsedException(EmailAlreadyUsedException ex){
-        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(),CONFLICT.value(),ex.getStackTrace());
-        return new ResponseEntity<>(errorResponse,CONFLICT);
+    public ResponseEntity<ErrorResponse> handleEmailAlreadyUsedException(EmailAlreadyUsedException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(CONFLICT.value(), ex.getMessage());
+        return new ResponseEntity<>(errorResponse, CONFLICT);
     }
 
     @ExceptionHandler({URISyntaxException.class})
-    public ResponseEntity<ErrorResponse> handleURISyntaxException(URISyntaxException ex){
-        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), BAD_REQUEST.value(), ex.getStackTrace());
-        return new ResponseEntity<>(errorResponse,BAD_REQUEST);
+    public ResponseEntity<ErrorResponse> handleURISyntaxException(URISyntaxException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(BAD_REQUEST.value(), ex.getMessage());
+        return new ResponseEntity<>(errorResponse, BAD_REQUEST);
     }
 
     @ExceptionHandler({UserNotFoundException.class})
-    public ResponseEntity<ErrorResponse> handleUserNotFoundException(UserNotFoundException ex){
-        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), NOT_FOUND.value(), ex.getStackTrace());
-        return new ResponseEntity<>(errorResponse,NOT_FOUND);
+    public ResponseEntity<ErrorResponse> handleUserNotFoundException(UserNotFoundException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(NOT_FOUND.value(), ex.getMessage());
+        return new ResponseEntity<>(errorResponse, NOT_FOUND);
+    }
+
+    @ExceptionHandler({ArticleNotFoundException.class})
+    public ResponseEntity<ErrorResponse> handleArticleNotFoundException(ArticleNotFoundException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(NOT_FOUND.value(), ex.getMessage());
+        return new ResponseEntity<>(errorResponse, NOT_FOUND);
     }
 }

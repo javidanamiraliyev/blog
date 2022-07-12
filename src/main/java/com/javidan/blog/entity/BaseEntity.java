@@ -1,11 +1,10 @@
-package com.javidan.blog.domain;
+package com.javidan.blog.entity;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Time;
 import java.sql.Timestamp;
 
 @MappedSuperclass

@@ -1,36 +1,16 @@
-package com.javidan.blog.domain;
+package com.javidan.blog.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.validation.constraints.NotEmpty;
+import com.javidan.blog.entity.User;
+import lombok.Data;
 
-@Entity
-public class Author extends BaseEntity{
-    @Column
-    @NotEmpty
+@Data
+public class AuthorDTO {
     private String firstName;
-
-    @Column
-    @NotEmpty
     private String lastName;
-
-    @Column
-    @NotEmpty
     private String bio;
-
-    @OneToOne
     private User account;
 
-    public Author() {
-    }
-
-    public Author(String firstName, String lastName, String bio,User account) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.bio = bio;
-        this.account = account;
+    public AuthorDTO() {
     }
 
     public String getFirstName() {

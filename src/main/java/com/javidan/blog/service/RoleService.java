@@ -1,8 +1,9 @@
 package com.javidan.blog.service;
 
-import com.javidan.blog.domain.Role;
-import com.javidan.blog.domain.User;
+import com.javidan.blog.dto.DTOMapper;
 import com.javidan.blog.dto.RoleDTO;
+import com.javidan.blog.entity.Role;
+import com.javidan.blog.entity.User;
 import com.javidan.blog.repository.RoleRepository;
 import com.javidan.blog.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -56,7 +57,7 @@ public class RoleService {
 
     }
 
-    public Role createRole(Role role){
-        return roleRepository.save(role);
+    public Role createRole(RoleDTO roleDTO){
+        return roleRepository.save(DTOMapper.mapToEntity(roleDTO));
     }
 }

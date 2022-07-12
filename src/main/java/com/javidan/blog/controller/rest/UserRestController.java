@@ -1,8 +1,7 @@
-package com.javidan.blog.controller;
+package com.javidan.blog.controller.rest;
 
-import com.javidan.blog.domain.Role;
-import com.javidan.blog.domain.User;
-import com.javidan.blog.dto.RoleDTO;
+import com.javidan.blog.entity.Role;
+import com.javidan.blog.entity.User;
 import com.javidan.blog.dto.UserDTO;
 import com.javidan.blog.exceptions.EmailAlreadyUsedException;
 import com.javidan.blog.exceptions.UserNotFoundException;
@@ -14,7 +13,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -52,7 +50,7 @@ public class UserRestController {
     public ResponseEntity<Set<Role>> addUserRoles(@PathVariable Long id, @RequestBody Set<String> roles) throws UserNotFoundException{
         Optional<User> user = userService.getUserById(id);
         if(user.isEmpty()){
-            throw new UserNotFoundException("User is not found");
+            throw new UserNotFoundException();
         }
         Set<Role> newRoles = userService.addRolesToUser(id,roles);
         return ResponseEntity.ok(newRoles);
@@ -63,11 +61,7 @@ public class UserRestController {
         if(userService.getUserByEmail(userDTO.getEmail()).isPresent()){
             throw new EmailAlreadyUsedException("Email is already used.");
         }
-        User user = new User();
-        user.setEmail(userDTO.getEmail());
-        user.setFirstName(userDTO.getFirstName());
-        user.setLastName(userDTO.getLastName());
-        user.setPassword(userDTO.getPassword());
-        return ResponseEntity.ok(userService.createUser(user));
+
+        return ResponseEntity.ok(userService.createUser(userDTO));
     }
 }

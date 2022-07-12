@@ -1,7 +1,7 @@
-package com.javidan.blog.controller;
+package com.javidan.blog.controller.rest;
 
-import com.javidan.blog.domain.Role;
 import com.javidan.blog.dto.RoleDTO;
+import com.javidan.blog.entity.Role;
 import com.javidan.blog.service.RoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,8 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
@@ -24,11 +22,11 @@ public class RoleRestController {
     }
 
     @PostMapping
-    public ResponseEntity<Role> createRole(@RequestBody @Validated Role role) {
-        if(role.getName()==null ){
+    public ResponseEntity<Role> createRole(@RequestBody @Validated RoleDTO roleDTO) {
+        if(roleDTO.getName()==null ){
             return ResponseEntity.badRequest().build();
         }
-        Role role1 = roleService.createRole(role);
+        Role role = roleService.createRole(roleDTO);
         return ResponseEntity.ok(role);
     }
 
