@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/roles")
@@ -26,8 +27,8 @@ public class RoleRestController {
         if(roleDTO.getName()==null ){
             return ResponseEntity.badRequest().build();
         }
-        Role role = roleService.createRole(roleDTO);
-        return ResponseEntity.ok(role);
+        Optional<Role> role = roleService.createRole(roleDTO);
+        return role.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
     @GetMapping("/{id}")

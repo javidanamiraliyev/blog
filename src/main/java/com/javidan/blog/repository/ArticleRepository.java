@@ -4,6 +4,8 @@ import com.javidan.blog.entity.Article;
 import com.javidan.blog.entity.Author;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +13,7 @@ import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 @Repository
-public interface ArticleRepository extends PagingAndSortingRepository<Article,Long> {
+public interface ArticleRepository extends JpaRepository<Article,Long> {
     Page<Article> findArticlesByCreated(Timestamp created, Pageable pageable);
     Page<Article> findArticlesByAuthor(@NotNull Author author, Pageable pageable);
 }

@@ -6,6 +6,7 @@ import com.javidan.blog.entity.Role;
 import com.javidan.blog.entity.User;
 import com.javidan.blog.repository.RoleRepository;
 import com.javidan.blog.repository.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,8 @@ import java.util.Set;
 public class RoleService {
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
+
+    ModelMapper modelMapper = new ModelMapper();
 
     public RoleService(RoleRepository roleRepository, UserRepository userRepository) {
         this.roleRepository = roleRepository;
@@ -57,7 +60,9 @@ public class RoleService {
 
     }
 
-    public Role createRole(RoleDTO roleDTO){
-        return roleRepository.save(DTOMapper.mapToEntity(roleDTO));
+    public Optional<Role> createRole(RoleDTO roleDTO){
+        if(roleRepository.findRoleByName(roleDTO.getName()).isEmpty())
+            return Optional.of(roleRepository.save(DTOMapper.mapToEntity(roleDTO)));
+        else return Optional.empty();
     }
 }

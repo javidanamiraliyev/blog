@@ -1,9 +1,14 @@
 package com.javidan.blog.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import lombok.Getter;
+import lombok.Setter;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import javax.validation.constraints.NotEmpty;
 
+@Setter
+@Getter
 @Entity
 public class Role extends BaseEntity {
     @Column
@@ -17,11 +22,4 @@ public class Role extends BaseEntity {
     public Role() {
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

@@ -1,10 +1,15 @@
 package com.javidan.blog.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import lombok.Getter;
+import lombok.Setter;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 
+@Setter
+@Getter
 @Entity
 public class Author extends BaseEntity{
     @Column
@@ -32,35 +37,4 @@ public class Author extends BaseEntity{
         this.account = account;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public User getAccount() {
-        return account;
-    }
-
-    public void setAccount(User account) {
-        this.account = account;
-    }
 }

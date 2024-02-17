@@ -1,5 +1,10 @@
 package com.javidan.blog.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class RoleDTO {
     private String name;
 
@@ -7,11 +12,4 @@ public class RoleDTO {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
